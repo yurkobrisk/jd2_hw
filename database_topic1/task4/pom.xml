@@ -34,6 +34,18 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
       </plugin>
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-maven-plugin</artifactId>
+        <version>4.2.2</version>
+        <configuration>
+          <changeLogFile>changelog.xml</changeLogFile>
+          <outputChangeLogFile>changelog.xml</outputChangeLogFile>
+          <url>jdbc:mysql://localhost:3306/listexpenses?serverTimezone=UTC</url>
+          <username>root</username>
+          <password>root</password>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
