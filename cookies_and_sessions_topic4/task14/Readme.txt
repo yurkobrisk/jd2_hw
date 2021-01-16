@@ -25,3 +25,13 @@ create table if not exists listexpenses.receivers (
 insert into listexpenses.receivers values(1, 'Internet-provider Solo');
 insert into listexpenses.receivers values(2, 'Gipermarket Korona');
 insert into listexpenses.receivers values(3, 'MTS');
+
+task 15.
+- добавить зависимость jstl в pom.xml
+<dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+- создать файл result.jsp для отображения на странице данных из базы.
+- вывод данных из сервлета убрать.

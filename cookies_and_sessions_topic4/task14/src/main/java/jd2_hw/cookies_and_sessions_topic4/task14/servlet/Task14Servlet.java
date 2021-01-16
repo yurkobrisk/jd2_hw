@@ -1,7 +1,9 @@
-package jd2_hw.cookies_and_sessions_topic4.task14;
+package jd2_hw.cookies_and_sessions_topic4.task14.servlet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +11,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
+@WebServlet(name = "task14Servlet",
+        urlPatterns = "/task14",
+        initParams = {
+                @WebInitParam(name = "url", value = "jdbc:mysql://localhost:3306/listexpenses?serverTimezone=UTC"),
+                @WebInitParam(name = "user", value = "root"),
+                @WebInitParam(name = "password", value = "root")
+        })
 public class Task14Servlet extends HttpServlet {
 
     @Override
@@ -31,9 +40,9 @@ public class Task14Servlet extends HttpServlet {
                                     resultSet.getInt(3) + " " +
                                     resultSet.getBigDecimal(4));
             }
-            writer.println("Task 14! Cookies and sessions topic 4.");
+            writer.println("Task 14! Cookies and sessions topic 4. Init Param.");
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            System.out.println("Что-то пошло не так в модуле задания 14! В данный момент все исправляется.");
         }
     }
 }

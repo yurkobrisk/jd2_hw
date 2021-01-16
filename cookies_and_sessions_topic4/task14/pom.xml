@@ -33,19 +33,23 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
     </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
   </dependencies>
 
   <build>
-    <finalName>task14</finalName>
     <plugins>
       <plugin>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-maven-plugin</artifactId>
         <version>4.2.2</version>
         <configuration>
-          <changeLogFile>changelog.xml</changeLogFile>
-          <outputChangeLogFile>changelog.xml</outputChangeLogFile>
-          <url>jdbc:mysql://localhost:3306/listexpenses?serverTimezone=UTC</url>
+          <changeLogFile>src/main/resources/changelog.xml</changeLogFile>
+          <outputChangeLogFile>src/main/resources/changelog.xml</outputChangeLogFile>
+          <url>jdbc:mysql://localhost:3306/listexpenses?serverTimezone=UTC&amp;createDatabaseIfNotExist=true</url>
           <username>root</username>
           <password>root</password>
         </configuration>
