@@ -10,24 +10,19 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@Table (name = "PERSON")
+@ToString
+@Getter
+@Setter
+@Table (name = "T_PERSON")
 public class Person implements Serializable {
     @Id
-    @GeneratedValue
-    @Getter
-    @Setter
-    @Column (name = "ID")
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    @Column (name = "P_ID")
     private Integer id;
-    @Getter
-    @Setter
-    @Column ( name = "AGE")
+    @Column ( name = "P_AGE")
     private Integer age;
-    @Getter
-    @Setter
-    @Column ( name = "NAME")
+    @Column ( name = "P_NAME")
     private String name;
-    @Getter
-    @Setter
-    @Column ( name = "SURNAME")
+    @Column ( name = "P_SURNAME")
     private String surname;
 }
