@@ -6,6 +6,14 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.ext.mysql.MySqlConnection;
 import org.dbunit.operation.DatabaseOperation;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.mapping.MetadataSource;
+import org.junit.After;
+import org.junit.Before;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,6 +24,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class BaseTest {
+
+    SessionFactory factory;
+
+    @Before
+    public void setUp() {
+//        Configuration configuration = new Configuration();
+//        configuration.configure("hibernate.cfg.test.xml");
+//        configuration.addAnnotatedClass(Person.class);
+
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure("hibernate.cfg.test.xml")
+                .build();
+
+//        factory = configuration.buildSessionFactory(registry);
+        factory = new MetadataSources(registry)
+                .buildMetadata()
+                .buildSessionFactory();
+    }
+
+    @After
+    public void tearDown() {
+        factory.close();
+    }
 
     private final static Logger log = Logger.getLogger(BaseTest.class.getName());
 

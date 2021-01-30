@@ -1,14 +1,8 @@
 package jd2_hw.hibernate_topic1.task1.pojos;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.Serializable;
@@ -17,21 +11,6 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class PersonTest extends BaseTest{
-
-    private SessionFactory factory;
-
-    @Before
-    public void setUp() {
-        Configuration configuration = new Configuration();
-        configuration.configure("hibernate.cfg.test.xml");
-        configuration.addAnnotatedClass(Person.class);
-
-        StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties())
-                .build();
-
-        factory = configuration.buildSessionFactory(registry);
-    }
 
     @Test
     public void create() {
@@ -78,7 +57,6 @@ public class PersonTest extends BaseTest{
         //Then
         assertNull(session.get(Person.class, 3));
         session.close();
-        deleteDataset();
     }
 
     @Test
@@ -93,11 +71,7 @@ public class PersonTest extends BaseTest{
 
         //Then
         assertEquals(1, persons.size());
-        deleteDataset();
+        session.close();
     }
 
-    @After
-    public void tearDown() {
-        factory.close();
-    }
 }

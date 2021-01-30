@@ -9,11 +9,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-@Getter
-@Setter
-@Table (name = "T_PERSON")
+//@Table (name = "T_PERSON")
 public class Person implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)

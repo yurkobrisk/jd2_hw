@@ -13,5 +13,6 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="jd2_hw.hibernate_topic1.task1.pojos.Person"/>
+        <mapping class="jd2_hw.hibernate_topic1.task1.pojos.Car"/>
     </session-factory>
 </hibernate-configuration>

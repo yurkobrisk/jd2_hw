@@ -16,6 +16,7 @@ public class PersonService {
     public static List<Person> getAll() {
         Session session = HibernateUtil.getSession();
         Query query = session.createQuery("FROM Person");
+        session.close();
         return query.list();
     }
 
@@ -26,7 +27,9 @@ public class PersonService {
      */
     public static Person get(Integer id) {
         Session session = HibernateUtil.getSession();
-        return session.get(Person.class, id);
+        Person person = session.get(Person.class, id);
+        session.close();
+        return person;
     }
 
     /**
@@ -44,6 +47,7 @@ public class PersonService {
             if (tx != null) tx.rollback();
             throw e;
         }
+        session.close();
     }
 
     /**
@@ -62,6 +66,7 @@ public class PersonService {
             if (tx != null) tx.rollback();
             throw e;
         }
+        session.close();
     }
 
     /**
@@ -85,5 +90,6 @@ public class PersonService {
             if (tx != null) tx.rollback();
             throw e;
         }
+        session.close();
     }
 }

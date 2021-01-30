@@ -6,6 +6,7 @@
     <persistence-unit name="jd2_hw.hibernate_topic1.task1" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>jd2_hw.hibernate_topic1.task1.pojos.Person</class>
+        <class>jd2_hw.hibernate_topic1.task1.pojos.Car</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
