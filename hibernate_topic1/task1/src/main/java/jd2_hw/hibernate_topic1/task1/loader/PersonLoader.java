@@ -1,5 +1,6 @@
 package jd2_hw.hibernate_topic1.task1.loader;
 
+import jd2_hw.hibernate_topic1.task1.pojos.Address;
 import jd2_hw.hibernate_topic1.task1.pojos.Person;
 import jd2_hw.hibernate_topic1.task1.service.PersonService;
 import jd2_hw.hibernate_topic1.task1.util.HibernateUtil;
@@ -9,15 +10,15 @@ import java.util.List;
 
 public class PersonLoader {
     public static void main(String[] args) {
-        Person person = new Person(null, 42, "Yury", "Korziuk");
+        Person person = new Person(null, 42, "Yury", "Korziuk", new Address());
         EntityManager em = HibernateUtil.getEntityManager();
         em.getTransaction().begin();
         em.persist(person);
         em.getTransaction().commit();
 
-        PersonService.add(new Person(null, 39, "Ivan", "Ivanov"));
-        PersonService.add(new Person(null, 25, "Sidor", "Sidorov"));
-        PersonService.add(new Person(null, 51, "Petr", "Petrov"));
+        PersonService.add(new Person(null, 39, "Ivan", "Ivanov", new Address()));
+        PersonService.add(new Person(null, 25, "Sidor", "Sidorov", new Address()));
+        PersonService.add(new Person(null, 51, "Petr", "Petrov", new Address()));
 
         person.setSurname("Gagarin");
         PersonService.edit(person);

@@ -16,7 +16,8 @@ public class CarTest extends BaseTest{
     @Test
     public void create() {
         //Given
-        Car car = new Car(null, "BMW", 2.4, "red");
+        Car car = new Car(null, "BMW", 2.4, "red",
+                new Address("Minsk", "Gikalo", "220000"));
 
         //When
         Session session = factory.openSession();
@@ -31,13 +32,13 @@ public class CarTest extends BaseTest{
     @Test
     public void printId(){
         //Given
-        Car car = new Car(null, "OPEL", 1.6, "white");
+        Car car = new Car(null, "OPEL", 1.6, "white", new Address());
 
         //When
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         for (int i = 0; i < 9; i++) {
-            session.save(new Car(null, "Mersedes", 2.0, "black"));
+            session.save(new Car(null, "Mersedes", 2.0, "black", new Address()));
             session.save(car);
         }
         transaction.commit();

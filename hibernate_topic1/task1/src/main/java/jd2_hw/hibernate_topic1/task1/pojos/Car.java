@@ -40,4 +40,7 @@ public class Car implements Serializable {
     @Transient
 //    @Column(name = "C_COLOR")
     private String color;
+
+    @Embedded
+    private Address address;
 }

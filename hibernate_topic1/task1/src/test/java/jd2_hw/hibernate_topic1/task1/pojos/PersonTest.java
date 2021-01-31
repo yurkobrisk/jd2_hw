@@ -15,7 +15,8 @@ public class PersonTest extends BaseTest{
     @Test
     public void create() {
         //Given
-        Person person = new Person(null, 24, "Ignat", "Ignatov");
+        Person person = new Person(null, 24, "Ignat", "Ignatov",
+                new Address("Brest", "Krasnaya", "220010"));
 
         //When
         Session session = factory.openSession();
@@ -79,7 +80,8 @@ public class PersonTest extends BaseTest{
     @Test
     public void printId(){
         //Given
-        Person person = new Person(null, 20, "Natalya", "Ivanova");
+        Person person = new Person(null, 20, "Natalya", "Ivanova",
+                new Address("Minsk", "Sadovaya", "220000"));
 
         //When
         Session session = factory.openSession();
