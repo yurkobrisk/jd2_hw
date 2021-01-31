@@ -1,6 +1,7 @@
 package jd2_hw.hibernate_topic1.task1.pojos;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,9 +13,10 @@ import java.io.Serializable;
 //@Table (name = "T_PERSON")
 public class Person implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (generator = "uuid-generator")
+    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     @Column (name = "P_ID")
-    private Integer id;
+    private String id;
     @Column ( name = "P_AGE")
     private Integer age;
     @Column ( name = "P_NAME")

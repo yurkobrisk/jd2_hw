@@ -39,10 +39,11 @@ public class PersonTest extends BaseTest{
     public void delete() {
         //Given
         cleanInsert("PersonTest.xml");
+        String uuid = "4028e4cb77575bd20177575bd5cc0001";
 
         //When
         Session session = factory.openSession();
-        Person person = session.get(Person.class, 3);
+        Person person = session.get(Person.class, uuid);
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
@@ -55,7 +56,7 @@ public class PersonTest extends BaseTest{
         }
 
         //Then
-        assertNull(session.get(Person.class, 3));
+        assertNull(session.get(Person.class, uuid));
         session.close();
     }
 
@@ -66,11 +67,33 @@ public class PersonTest extends BaseTest{
 
         //When
         Session session = factory.openSession();
-        Query query = session.createQuery("from Person where surname like 'Ivanova'", Person.class);
+        Query<Person> query = session.createQuery("from Person where surname like 'Ivanova'", Person.class);
         List<Person> persons = query.list();
 
         //Then
+        assertNotNull(persons);
         assertEquals(1, persons.size());
+        session.close();
+    }
+
+    @Test
+    public void printId(){
+        //Given
+        Person person = new Person(null, 20, "Natalya", "Ivanova");
+
+        //When
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.save(person);
+        tx.commit();
+
+        Query<Person> query = session.createQuery("from Person where surname like 'Ivanova'", Person.class);
+        List<Person> persons = query.list();
+
+        //Then
+        assertNotNull(persons);
+        assertEquals(1, persons.size());
+        System.out.println("-------- Person UUID = " + persons.get(0).getId() + " --------");
         session.close();
     }
 
