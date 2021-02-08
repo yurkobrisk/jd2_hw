@@ -4,13 +4,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 @Getter
 @Setter
 @ToString
-@Component  //Spring компонент
+@Configuration
 public class Person {
+
+    static {
+        System.out.println("creating bean Person...");
+    }
 
     private Integer id;
 
@@ -21,6 +25,7 @@ public class Person {
     private String surname;
 
     @Autowired(required = false) //Автосвязывание, поле проинициализируется null-значением
+                                // если required = false и не возникнет исключение
     private IAddress address;
 
 }

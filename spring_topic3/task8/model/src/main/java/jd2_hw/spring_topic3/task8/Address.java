@@ -3,13 +3,17 @@ package jd2_hw.spring_topic3.task8;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 @Getter
 @Setter
 @ToString
-@Component
+@Configuration
 public class Address implements IAddress {
+
+    static {
+        System.out.println("creating bean Address...");
+    }
 
     private Long id;
 
